@@ -3,7 +3,7 @@
 
 #### 一. 依赖
 ```
-    <groupId>start.xiaolei</groupId>
+    <groupId>star.xiaolei</groupId>
     <artifactId>starter-redis</artifactId>
     <version>1.0-SNAPSHOT</version>
 ```
