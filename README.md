@@ -52,3 +52,7 @@ redis:
         });
     }
 ```
+
+### 五. 待续
+* 支持Sentinel的Master-Slave模式配置发现与装载;
+* 支持Cluster模式配置发现与装载.
