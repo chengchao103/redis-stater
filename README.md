@@ -10,12 +10,22 @@
 * 使用JDK 8的Lambda表达式: 函数式编程, 接口编程.
 
 #### 二. 项目结构
+* 源码
+
 <img src="structure.png" width="320" height="200" alt="结构" />
 
 ```
 RedisProperties.java: 装配属性配置信息;
 RedisAutoConfiguration.java: 提供JedisPoolConfig, JedisPool, JedisTemplate的Bean实例化;
 JedisTemplate.java: 通用的连接模板;
+```
+* 测试代码
+
+<img src="test-structure.png" width="360" height="200" alt="结构" />
+
+```
+RedisAutoBaseConfigurationTest.java: 测试配置的自动加载与Bean装配;
+JedisTemplateTest.java: 测试连接池的管理与使用.
 ```
 
 #### 三. 配置(application.yml)
