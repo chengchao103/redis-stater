@@ -19,7 +19,7 @@ import static org.hamcrest.core.Is.is;
  * Desc: 自动配置测试
  */
 @ActiveProfiles("test")
-public class RedisAutoConfigurationTest {
+public class RedisAutoBaseConfigurationTest {
 
     private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
@@ -31,6 +31,9 @@ public class RedisAutoConfigurationTest {
         assertThat(this.context.getBeanNamesForType(JedisPoolConfig.class).length, is(0));
     }
 
+    /**
+     * 测试配置的自动装载,及Bean的实例化
+     */
     @Test
     public void testWithFullConfig() {
         EnvironmentTestUtils.addEnvironment(this.context,

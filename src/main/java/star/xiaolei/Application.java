@@ -58,8 +58,8 @@ public class Application {
      * @param key 键
      * @throws Exception 异常
      */
-    @RequestMapping(value = "getWithNoResult", method = RequestMethod.GET)
-    public void getWithNoResult(String key) throws Exception {
+    @RequestMapping(value = "getNoResult", method = RequestMethod.GET)
+    public void getNoResult(String key) throws Exception {
         jedisTemplate.execute(jedis -> {
             jedis.get(key);
         });
