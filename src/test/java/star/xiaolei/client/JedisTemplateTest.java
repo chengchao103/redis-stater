@@ -1,9 +1,9 @@
-package client;
+package star.xiaolei.client;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import star.xiaolei.client.JedisTemplate;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 

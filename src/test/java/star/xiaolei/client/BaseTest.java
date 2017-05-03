@@ -1,4 +1,4 @@
-package client;
+package star.xiaolei.client;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
