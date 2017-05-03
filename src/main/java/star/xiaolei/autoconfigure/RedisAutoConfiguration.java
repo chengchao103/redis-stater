@@ -53,7 +53,7 @@ public class RedisAutoConfiguration {
     }
 
     /**
-     * 构建连接客户端
+     * 构建连接客户端通用模板
      * @param jedisPool 连接池
      * @return 客户端可用连接
      */
