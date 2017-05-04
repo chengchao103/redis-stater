@@ -1,5 +1,7 @@
 package star.xiaolei.autoconfigure;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import redis.clients.jedis.*;
+import redis.clients.util.Pool;
 import star.xiaolei.client.JedisTemplate;
 import star.xiaolei.properties.RedisProperties;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.Set;
 
 /**
  * Created by 周高磊
@@ -45,11 +49,23 @@ public class RedisAutoConfiguration {
     /**
      * 构建连接池
      * @param jedisPoolConfig 连接池配置信息
-     * @return 连接池
+     * @return Pool<Jedis>: JedisPool/JedisSentinelPool 连接池
      */
     @Bean
-    public JedisPool getJedisPool(JedisPoolConfig jedisPoolConfig) {
-        return new JedisPool(jedisPoolConfig, properties.getHost(), properties.getPort());
+    public Pool<Jedis> getJedisPool(JedisPoolConfig jedisPoolConfig) {
+        if(properties.isCluster()) {
+            String[] sentinelProps =  properties.getSentinelHosts().split(",");
+            Set<String> sentinelHosts = Sets.newHashSet(sentinelProps);
+            if(Strings.isNullOrEmpty(properties.getAuth())) {
+                return new JedisSentinelPool(properties.getSentinelMasterName(), sentinelHosts, jedisPoolConfig);
+            }
+            return new JedisSentinelPool(properties.getSentinelMasterName(), sentinelHosts, jedisPoolConfig, Protocol.DEFAULT_TIMEOUT, properties.getAuth());
+        }
+
+        if(Strings.isNullOrEmpty(properties.getAuth())) {
+            return new JedisPool(jedisPoolConfig, properties.getHost(), properties.getPort());
+        }
+        return new JedisPool(jedisPoolConfig, properties.getHost(), properties.getPort(), Protocol.DEFAULT_TIMEOUT, properties.getAuth());
     }
 
     /**
@@ -58,7 +74,7 @@ public class RedisAutoConfiguration {
      * @return 客户端可用连接
      */
     @Bean
-    public JedisTemplate getRedisTemplate(JedisPool jedisPool) {
+    public JedisTemplate getRedisTemplate(Pool<Jedis> jedisPool) {
         return new JedisTemplate(jedisPool);
     }
 

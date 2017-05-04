@@ -3,6 +3,7 @@ package star.xiaolei.client;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -11,9 +12,10 @@ import static org.hamcrest.core.Is.is;
  * Created by 周高磊
  * Date: 2017/5/3.
  * Email: gaoleizhou@gmail.com
- * Desc:
+ * Desc: Standalone模式测试
  */
-public class JedisTemplateTest extends BaseTest {
+@ActiveProfiles("standalone")
+public class JedisStandaloneTemplateTest extends BaseTest {
 
     @Autowired
     private JedisTemplate jedisTemplate;

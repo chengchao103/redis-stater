@@ -34,4 +34,13 @@ public class RedisProperties {
     //在获取连接的时候是否检查有效性
     private boolean testOnBorrow = true;
 
+    //是否开启集群模式,默认关闭
+    private boolean cluster = false;
+
+    //Sentinel Instance 列表
+    private String SentinelHosts;
+
+    //Sentinel Master Name
+    private String SentinelMasterName;
+
 }

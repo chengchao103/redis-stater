@@ -1,0 +1,8 @@
+redis:
+  maxTotal: 5
+  maxIdle: 0
+  maxWaitMillis: 10000
+  testOnBorrow: true
+  cluster: true
+  sentinel-master-name: test
+  sentinel-hosts: 127.0.0.1:26378,127.0.0.1:26379

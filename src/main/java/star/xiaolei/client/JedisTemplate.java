@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisException;
+import redis.clients.util.Pool;
 
 /**
  * Created by 周高磊
@@ -16,9 +17,9 @@ public class JedisTemplate {
 
     private static Logger logger = LoggerFactory.getLogger(JedisTemplate.class);
 
-    private JedisPool jedisPool;
+    private Pool<Jedis> jedisPool;
 
-    public JedisTemplate(JedisPool jedisPool) {
+    public JedisTemplate(Pool<Jedis> jedisPool) {
         this.jedisPool = jedisPool;
     }
 
@@ -26,7 +27,7 @@ public class JedisTemplate {
      * 获取连接池
      * @return jedisPool
      */
-    public JedisPool getJedisPool() {
+    public Pool<Jedis> getJedisPool() {
         return jedisPool;
     }
 
