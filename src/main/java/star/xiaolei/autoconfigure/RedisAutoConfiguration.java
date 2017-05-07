@@ -2,7 +2,6 @@ package star.xiaolei.autoconfigure;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import java.util.Set;
  * Email: gaoleizhou@gmail.com
  * Desc: 自动组装Redis配置信息
  */
-@Slf4j
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 public class RedisAutoConfiguration {
