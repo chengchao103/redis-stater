@@ -1,7 +1,5 @@
 package star.xiaolei.autoconfigure;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import redis.clients.util.Pool;
 import star.xiaolei.client.JedisTemplate;
 import star.xiaolei.properties.RedisProperties;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -53,14 +53,16 @@ public class RedisAutoConfiguration {
     public Pool<Jedis> getJedisPool(JedisPoolConfig jedisPoolConfig) {
         if(properties.isCluster()) {
             String[] sentinelProps =  properties.getSentinelHosts().split(",");
-            Set<String> sentinelHosts = Sets.newHashSet(sentinelProps);
-            if(Strings.isNullOrEmpty(properties.getAuth())) {
+            Set<String> sentinelHosts = new HashSet<>();
+            Collections.addAll(sentinelHosts, sentinelProps);
+
+            if("".equals(properties.getAuth()) || properties.getAuth() == null) {
                 return new JedisSentinelPool(properties.getSentinelMasterName(), sentinelHosts, jedisPoolConfig);
             }
             return new JedisSentinelPool(properties.getSentinelMasterName(), sentinelHosts, jedisPoolConfig, Protocol.DEFAULT_TIMEOUT, properties.getAuth());
         }
 
-        if(Strings.isNullOrEmpty(properties.getAuth())) {
+        if("".equals(properties.getAuth()) || properties.getAuth() == null) {
             return new JedisPool(jedisPoolConfig, properties.getHost(), properties.getPort());
         }
         return new JedisPool(jedisPoolConfig, properties.getHost(), properties.getPort(), Protocol.DEFAULT_TIMEOUT, properties.getAuth());
