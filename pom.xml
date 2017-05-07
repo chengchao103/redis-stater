@@ -10,9 +10,7 @@
 
     <properties>
         <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
-        <lombok.version>1.16.16</lombok.version>
         <jedis.version>2.9.0</jedis.version>
-        <guava.version>21.0</guava.version>
     </properties>
 
     <dependencies>
