@@ -30,13 +30,6 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!--spring boot starter web-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-
         <!--spring boot starter test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
