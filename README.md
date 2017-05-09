@@ -11,6 +11,10 @@
 * 使用JDK 8的Lambda表达式: 函数式编程, 接口编程.
 
 #### 二. 项目结构
+* UML
+
+<img src="UML.png" width="480" height="320" alt="UML" />
+
 * 源码
 
 <img src="structure.png" width="320" height="200" alt="结构" />
