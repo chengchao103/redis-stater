@@ -13,7 +13,7 @@
 #### 二. 项目结构
 * UML
 
-<img src="UML.png" width="480" height="320" alt="UML" />
+<img src="UML.png" width="530" height="400" alt="UML" />
 
 * 源码
 
