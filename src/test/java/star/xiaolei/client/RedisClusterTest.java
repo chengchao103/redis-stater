@@ -18,7 +18,7 @@ public class RedisClusterTest extends BaseTest {
 
     @Test
     public void get(){
-        System.out.println("=============="+jedisCluster.get("youqian-spread-sync-to-mysql-date"));
+        System.out.println("=============="+jedisCluster.get("foo"));
     }
 
 }
